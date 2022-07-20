@@ -1,51 +1,84 @@
 ﻿using System;
+using ArrayAndArrayList;
+using System.Collections;
 
 namespace ArrayAndArrayList {
     public class Program {
         static void Main(string[] args) {
+            //ArrayExample.ArrayMethods();
+
             int i;
-            int[] num = { 6, 2, 8, 12, 4, 32, 8, 43, 33 };
-            Console.WriteLine("Array Elements: ");
-            for (i = 0; i < num.Length; i++) {
-                Console.Write(num[i] + ",");
+            var arrlst = new ArrayList();
+            arrlst.Add(54);
+            arrlst.Add("Bananas");
+            arrlst.Add(null);
+            arrlst.Add("sweet");
+            arrlst.Add(3.5f);
+            arrlst.Add("apples");
+            arrlst.Add(null);
+            arrlst.Add("crunchy");
+
+            ArrayList arrlst2 = new ArrayList() {
+                2,"foo",5,"bar"
+            };
+
+            arrlst[0] = "grand";
+
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
             }
             Console.WriteLine("\n");
 
-            Console.WriteLine("Length of array: " + num.Length);
-            Console.WriteLine();
-
-            Array.Sort(num);    //sort array in Asc order
-            Console.WriteLine("Sorted array: ");
-            for (i = 0; i < num.Length; i++) {
-                Console.Write(num[i] + ",");
-            }
-            Console.WriteLine("\n");
-
-            var varIndex = Array.IndexOf(num, 33);
-            Console.WriteLine("Index position of value: ");
-            Console.WriteLine("33 is at " + varIndex + "th position");   //returns index of value
             Console.WriteLine("\nvalue of position: ");
-            Console.WriteLine("4th position value is " + num[3]);
-            Console.WriteLine();
+            Console.WriteLine("4th position value is " + arrlst[3]);
+            Console.WriteLine("\n");
 
-            Array.Reverse(num);
-            Console.WriteLine("Reverse array: ");
-            for (i = 0; i < num.Length; i++) {
-                Console.Write(num[i] + ",");
+            arrlst.Insert(1, "John");
+            Console.WriteLine("Inserted element at 1st position: ");
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
             }
             Console.WriteLine("\n");
 
-            int[] num2 = new int[9];
-            Array.Copy(num, num2, num.Length);
-            Console.WriteLine("printing copied array: ");
-            for (i = 0; i < num2.Length; i++) {
-                Console.Write(num2[i] + ",");
+            Console.WriteLine("Inserting array in another array from specific range");
+            arrlst.InsertRange(3, arrlst2);
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
             }
+            Console.WriteLine("\n");
 
-            Console.WriteLine("\n\nprinting array using foreach loop: ");
-            string[] names = { "raghavi", "shaunak", "Grishma", "Jay" };
-            foreach (string name in names) {
-                Console.Write(name+",");
+            Console.WriteLine("removing first occurence null");
+            arrlst.Remove(null);
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Removing value of index 5: ");
+            arrlst.RemoveAt(6);
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Removing value from range 1-3: ");
+            arrlst.RemoveRange(1,3);
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Reversing the arraylist: ");
+            arrlst.Reverse();
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Appending ArrayList: ");
+            arrlst.AddRange(arrlst2);
+            for (i = 0; i < arrlst.Count; i++) {
+                Console.Write(arrlst[i] + ",");
             }
             Console.WriteLine("\n");
         }

@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArrayAndArrayList {
+    public static class ArrayExample {
+        public static void ArrayMethods() {
+            int i;
+            int[] num = { 6, 2, 8, 12, 4, 32, 8, 43, 33 };
+            Console.WriteLine("Array Elements: ");
+            for (i = 0; i < num.Length; i++) {
+                Console.Write(num[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Length of array: " + num.Length);
+            Console.WriteLine();
+
+            Array.Sort(num);    //sort array in Asc order
+            Console.WriteLine("Sorted array: ");
+            for (i = 0; i < num.Length; i++) {
+                Console.Write(num[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            var varIndex = Array.IndexOf(num, 33);
+            Console.WriteLine("Index position of value: ");
+            Console.WriteLine("33 is at " + varIndex + "th position");   //returns index of value
+            Console.WriteLine("\nvalue of position: ");
+            Console.WriteLine("4th position value is " + num[3]);
+            Console.WriteLine();
+
+            Array.Reverse(num);
+            Console.WriteLine("Reverse array: ");
+            for (i = 0; i < num.Length; i++) {
+                Console.Write(num[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            int[] num2 = new int[9];
+            Array.Copy(num, num2, num.Length);      //decides result array length
+            Console.WriteLine("printing copied array: ");
+            for (i = 0; i < num2.Length; i++) {
+                Console.Write(num2[i] + ",");
+            }
+
+            Console.WriteLine("\n\nprinting array using foreach loop: ");
+            string[] names = { "raghavi", "shaunak", "Grishma", "Jay" };
+            foreach (string name in names) {
+                Console.Write(name + ",");
+            }
+            Console.WriteLine("\n");
+
+            Console.WriteLine("Cloned Array: ");
+            int[] clonedNumArray = (int[])num.Clone();      //Creates a shallow copy of the System.Array
+            for (i = 0; i < clonedNumArray.Length; i++) {
+                Console.Write(clonedNumArray[i] + ",");
+            }
+            Console.WriteLine("\n");
+
+            int[] num3 = new int[num.Length];
+            num.CopyTo(num3, 0);
+            Console.WriteLine("Copied Array using copyTo Method: ");     //it use to copy array from specific index
+            for (i = 0; i < num3.Length; i++) {
+                Console.Write(num3[i] + ",");
+            }
+            Console.WriteLine("\n");
+        }
+    }
+}
