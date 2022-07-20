@@ -5,7 +5,7 @@ using System.Collections;
 namespace ArrayAndArrayList {
     public class Program {
         static void Main(string[] args) {
-            //ArrayExample.ArrayMethods();
+            ArrayExample.ArrayMethods();
 
             int i;
             var arrlst = new ArrayList();
