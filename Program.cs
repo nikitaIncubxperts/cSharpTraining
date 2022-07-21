@@ -4,8 +4,9 @@ namespace HashTable {
     public class Program {
         static void Main(string[] args) {
             Hashtable hashdata = new Hashtable();
-            
-            hashdata.Add(101,"harry");
+            Hashtable hashdata3 = new Hashtable();
+
+            hashdata.Add(101, "harry");
             hashdata.Add(102, "greko");
             hashdata.Add(103, "malphoy");
             hashdata.Add(104, "harmieny");
@@ -13,8 +14,8 @@ namespace HashTable {
 
             Console.WriteLine("keys   Values");
             Console.WriteLine("--------------");
-            foreach (DictionaryEntry k in hashdata) {                
-                Console.WriteLine(k.Key+"   "+k.Value);
+            foreach (DictionaryEntry k in hashdata) {
+                Console.WriteLine(k.Key + "   " + k.Value);
             }
 
             Console.WriteLine("\n");
@@ -31,14 +32,23 @@ namespace HashTable {
                 Console.WriteLine(k.Key + "   " + k.Value);
             }
 
-            Console.WriteLine("\n");
+            Console.WriteLine("\n checking existing key and value");
             bool decision = hashdata.Contains(101);
             Console.WriteLine(decision);
-                        
+            Console.WriteLine(hashdata.ContainsKey(101));
+            Console.WriteLine(hashdata.ContainsValue("greko"));
+
+            Console.WriteLine("\n");
             DictionaryEntry[] hashdata2 = new DictionaryEntry[hashdata.Count];
-            hashdata.CopyTo(hashdata2,0);
+            hashdata.CopyTo(hashdata2, 0);                       
             Console.WriteLine("copying hashdata values to hashdata2");
             foreach (DictionaryEntry k in hashdata2) {
+                Console.WriteLine(k.Key + "   " + k.Value);
+            }
+
+            hashdata3 = hashdata;
+            Console.WriteLine("copying hashdata values to hashdata2 by another way: ");
+            foreach (DictionaryEntry k in hashdata3) {
                 Console.WriteLine(k.Key + "   " + k.Value);
             }
 
