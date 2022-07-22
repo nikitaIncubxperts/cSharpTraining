@@ -5,8 +5,10 @@ namespace HashTable {
         static void Main(string[] args) {
             //HashTableMethods ht = new HashTableMethods();
             //ht.HashMethods();
-            StackMethods st = new StackMethods();
-            st.StackFun();
+            //StackMethods st = new StackMethods();
+            //st.StackFun();
+            QueueMethods qm = new();
+            qm.QueueMethodFun();
         }
     }
 }
