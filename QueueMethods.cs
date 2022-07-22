@@ -32,7 +32,7 @@ namespace HashTable {
             Console.WriteLine("\nCheck existance of 302 element");
             Console.WriteLine(queue.Contains(302));
 
-            object[] arr = queue.ToArray();
+            object[] arr = queue.ToArray();     //due to multiple datatypes, used object for copying queque
             Console.WriteLine("\nIterating Copied Array: ");
             foreach (var i in arr) {
                 Console.WriteLine(i);
