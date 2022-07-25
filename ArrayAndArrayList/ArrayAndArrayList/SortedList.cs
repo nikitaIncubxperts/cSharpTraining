@@ -47,6 +47,11 @@ namespace ArrayAndArrayList {
             Console.WriteLine(sortedList.ContainsValue("Marks"));   //case sensitive
 
             Console.WriteLine("\nSystem type of object: " + sortedList.GetType());
+
+            Console.WriteLine("\nFetching index of key 301: "+sortedList.IndexOfKey(301));
+            Console.WriteLine("\nFetching index of value 'Marks': " + sortedList.IndexOfValue("Marks"));
+
+            //Console.WriteLine("\nGetting Capacity of SortedList: "+sortedList.Capacity); 
         }
     }
 }
