@@ -7,16 +7,26 @@ using System.Threading.Tasks;
 namespace ArrayAndArrayList {
     public class SortedList {
         public static void SortedListMethods() {
-            SortedList<int, string> sortedList = new SortedList<int, string>();
-            sortedList.Add(301, "Foo");
-            sortedList.Add(302, "Bar");
-            sortedList.Add(303, "Zoo");
-            sortedList.Add(304, "Marks");
-            sortedList.Add(305, "Marine");
+            SortedList<int, string> sortedList = new SortedList<int, string> {
+                { 301, "Foo" },
+                { 302, "Bar" },
+                { 303, "Zoo" },
+                { 304, "Marks" },
+                { 305, "Marine" }
+            };
 
-            foreach(var keyValue in sortedList) {
+            foreach (var keyValue in sortedList) {
                 Console.WriteLine(keyValue);
             }
+
+            //SortedList<int, string> sortedList2 = new SortedList<int, string> {
+            //    { 301, "Foo" },
+            //    { 302, "Bar" },
+            //    { 303, "Zoo" },
+            //    { 304, "Marks" },
+            //    { 305, "Marine" }
+            //};
+            //Console.WriteLine("\nComparing two Sortedlist: " + sortedList.Equals(sortedList2));
 
             sortedList.Remove(303);
             Console.WriteLine("\nSortedList after Removing value by key key: ");
@@ -29,6 +39,14 @@ namespace ArrayAndArrayList {
             foreach (var keyValue in sortedList) {
                 Console.WriteLine(keyValue);
             }
+
+            Console.WriteLine("\nChecking existance of key 301: ");
+            Console.WriteLine(sortedList.ContainsKey(301));
+
+            Console.WriteLine("\nChecking existance of value: ");
+            Console.WriteLine(sortedList.ContainsValue("Marks"));   //case sensitive
+
+            Console.WriteLine("\nSystem type of object: " + sortedList.GetType());
         }
     }
 }
