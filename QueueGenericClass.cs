@@ -29,6 +29,12 @@ namespace GenericCollection {
             Console.WriteLine("\nTotal elements in Queue: " + queueObj.Count());
             Console.WriteLine("\nShowing first element in queue: " + queueObj.Peek());
 
+            string[] queueCopy = new string[queueObj.Count];
+            queueObj.CopyTo(queueCopy,0);
+            Console.WriteLine("\nCopied Queue: ");
+            foreach (var item in queueCopy) {
+                Console.WriteLine(item);
+            }
         }
     }
 }
