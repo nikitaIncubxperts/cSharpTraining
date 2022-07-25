@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GenericCollection {
     public class ArrayAsArgument {
-        public static void SortArray(int[] arr) {           
+        public static void SortArray(int[] arr) {    
+            //BUbble sort
             for (int i = 0; i < arr.Length; i++) { 
                 for(int j = i+1; j < arr.Length; j++) {
                     if (arr[j] < arr[i]) {
