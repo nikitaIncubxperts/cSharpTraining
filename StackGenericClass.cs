@@ -15,12 +15,13 @@ namespace GenericCollection {
             stackObj.Push(1);
 
             Console.WriteLine("Printing Stack");
-            foreach (int i in stackObj) {
+            foreach (var i in stackObj) {
                 Console.Write(i + ",");
             }
 
             Console.WriteLine("\n\nRemove and return top element: "+ stackObj.Pop());
             Console.WriteLine("\nPrinting Stack");
+            Console.WriteLine("Item left in stack : "+stackObj.Count());
             foreach (int i in stackObj) {
                 Console.Write(i + ",");
             }
@@ -34,7 +35,6 @@ namespace GenericCollection {
             foreach (int i in stackObj1) {
                 Console.Write(i + ",");
             }
-
         }
     }
 }
