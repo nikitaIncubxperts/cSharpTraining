@@ -18,11 +18,5 @@ namespace GenericCollection {
                 }
             }
         }
-        public static void printArray(int[] arr) {
-            Console.WriteLine("Sorted array: ");
-            foreach (var item in arr) {
-                Console.Write(item + ",");
-            }
-        }
     }
 }
