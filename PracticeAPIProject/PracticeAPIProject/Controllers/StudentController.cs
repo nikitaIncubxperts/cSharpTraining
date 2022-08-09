@@ -55,6 +55,16 @@ namespace PracticeAPIProject.Controllers {
 
             return Ok(student);
         }
+
+        [HttpDelete("/DeleteStudent")]
+        public IActionResult DeleteStudent(int id) { 
+            var studentDeleteById = student.Find(x => x.ID == id);
+            if (studentDeleteById == null) {
+                return BadRequest("No data Found");
+            }
+            student.Remove(studentDeleteById);
+            return Ok(student);
+        }
     }
 }
 
