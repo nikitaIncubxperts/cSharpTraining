@@ -11,8 +11,9 @@ namespace SimpleCrudProjectUsingObjectService.Service {
     public class AnimalService : AnimalRepo {
         private readonly AnimalContext _AnimalContext;
 
-        public AnimalService(AnimalContext animalContext) {
-            _AnimalContext = animalContext;
+        public AnimalService() {    //AnimalContext animalContext
+            //_AnimalContext = animalContext;
+            _AnimalContext = new AnimalContext();
         }
 
         public async Task<AnimalModel> AddAnimal(AnimalModel animal) {

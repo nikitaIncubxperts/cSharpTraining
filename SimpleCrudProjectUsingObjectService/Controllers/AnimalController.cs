@@ -11,15 +11,19 @@ namespace SimpleCrudProjectUsingObjectService.Controllers {
     [ApiController]
     public class AnimalController :ControllerBase {
         private readonly AnimalRepo animalRepo;
+        private readonly AnimalService animalServiceObject;
 
         public AnimalController(AnimalRepo _animalRepo) {
             animalRepo = _animalRepo;
-            //AnimalService animObject = new AnimalService();
+            animalServiceObject = new AnimalService();
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAnimals() {
-            return Ok(await animalRepo.GetAnimals());
+            //return Ok(await animalRepo.GetAnimals());
+            return Ok(await animalServiceObject.GetAnimals());
+
+
         }
 
         [HttpGet("{age}")]
