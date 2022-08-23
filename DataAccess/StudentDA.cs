@@ -3,6 +3,7 @@ using RestfulCRUD_APIs_CodingStandard_Validation_DI.Data;
 using RestfulCRUD_APIs_CodingStandard_Validation_DI.Entites;
 using RestfulCRUD_APIs_CodingStandard_Validation_DI.IDataAccess;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.DataAccess {
@@ -18,20 +19,42 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.DataAccess {
             return dataAdd.Entity;
         }
 
-        public Task<StudentEntity> DeleteStudentById(int id) {
-            throw new System.NotImplementedException();
+        public StudentEntity DeleteStudentById(int id) {
+            var delStudentData = _stud_clg_context.studentData.FirstOrDefault(x => x.Id == id);
+            if (delStudentData != null) {
+                var delStud = _stud_clg_context.studentData.Remove(delStudentData);
+                _stud_clg_context.SaveChanges();
+                return delStud.Entity;
+            }
+            return null;
         }
 
         public IEnumerable<StudentEntity> GetAllStudents() {
             return _stud_clg_context.studentData;
         }
 
-        public Task<StudentEntity> GetStudentById(int id) {
-            throw new System.NotImplementedException();
+        public StudentEntity GetStudentById(int id) {
+            var studById = _stud_clg_context.studentData.FirstOrDefault(x => x.Id == id);
+            _stud_clg_context.SaveChanges();
+            return studById;
         }
 
-        public Task<StudentEntity> UpdateStudent(StudentEntity student) {
-            throw new System.NotImplementedException();
+        public StudentEntity UpdateStudent(StudentEntity student, int id) {
+            var studentData = _stud_clg_context.studentData.Where(x => x.Id == id).ToList();
+            foreach(var dataUpdate in studentData) {
+                if(dataUpdate.Id == id) {
+                    dataUpdate.FirstName = student.FirstName;
+                    dataUpdate.LastName = student.LastName;
+                    dataUpdate.Email = student.Email;
+                    dataUpdate.Phone = student.Phone;
+                    dataUpdate.DateOfBirth = student.DateOfBirth;
+
+                    var studUpdate = _stud_clg_context.studentData.Update(dataUpdate);
+                    _stud_clg_context.SaveChanges();
+                    return studUpdate.Entity;
+                }
+            }
+            return null;
         }
     }
 }

@@ -23,34 +23,21 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Controllers {
         [HttpPost]
         public IActionResult Add(StudentModel obj) {
             return Ok(istudent.AddStudent(obj));
-
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult> GetAllStudents() {
-        //    //return Ok(await animalRepo.GetAnimals());
-        //    return Ok(await studentserviceobj.GetAllStudents());
-        //}
+        [HttpGet("{id}")]
+        public IActionResult GetStudentById(int id) {
+            return Ok(istudent.GetStudentById(id));
+        }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult> GetStudentById(int id) {
-        //    return Ok(await studentserviceobj.GetStudentById(id));
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStudentById(int id) {
+            return Ok(istudent.DeleteStudentById(id));
+        }
 
-        //[HttpPost]
-        //public async Task<ActionResult> AddStudent(StudentEntity stud) {
-        //    return Ok(await studentserviceobj.AddStudent(stud));
-        //}
-
-        //[HttpPut("{id}")]
-        //public async Task<StudentEntity> UpdateAnimal(StudentEntity stud) {
-        //    var updateStudent = await studentserviceobj.UpdateStudent(stud);
-        //    return updateStudent;
-        //}
-
-        //[HttpDelete("{id}")]
-        //public async Task<StudentEntity> DeleteAnimal(int id) {
-        //    return await studentserviceobj.DeleteStudentById(id);
-        //}
+        [HttpPut("{id}")]
+        public IActionResult UpdateStudent(StudentModel studModelobj ,int id) {
+            return Ok(istudent.UpdateStudent(studModelobj ,id));
+        }
     }
 }

@@ -26,31 +26,19 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Controllers {
 
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult> GetColleges() {
-        //    //return Ok(await animalRepo.GetAnimals());
-        //    return Ok(await collegeserviceobj.GetColleges());
-        //}
+        [HttpGet("{id}")]
+        public IActionResult GetCollegeById(int id) {
+            return Ok(icollege.GetCollegeById(id));
+        }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult> GetCollegeById(int id) {
-        //    return Ok(await collegeserviceobj.GetCollegeById(id));
-        //}
+        [HttpPut("{id}")]
+        public IActionResult UpdateCollege(CollegeModel college, int id) {
+            return Ok(icollege.UpdateCollege(college, id));
+        }
 
-        //[HttpPost]
-        //public async Task<ActionResult> AddColleges(CollegeEntity clg) {
-        //    return Ok(await collegeserviceobj.AddColleges(clg));
-        //}
-
-        //[HttpPut("{id}")]
-        //public async Task<CollegeEntity> UpdateCollege(CollegeEntity clg) {
-        //    var updateCollege = await collegeserviceobj.UpdateCollege(clg);
-        //    return updateCollege;
-        //}
-
-        //[HttpDelete("{id}")]
-        //public async Task<CollegeEntity> DeleteCollegeById(int id) {
-        //    return await collegeserviceobj.DeleteCollegeById(id);
-        //}
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCollegeById(int id) {
+            return Ok(icollege.DeleteCollegeById(id));
+        }
     }
 }

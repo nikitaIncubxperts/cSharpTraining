@@ -11,9 +11,9 @@ using RestfulCRUD_APIs_CodingStandard_Validation_DI.DataAccess;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Service {
     public class StudentService : IStudent {
-        private readonly IStudentDA StudentContext;
+        private readonly IStudentDA studentContext;
         public StudentService(IStudentDA _StudentContext) {
-            StudentContext = _StudentContext;
+            studentContext = _StudentContext;
         }
 
         public async Task<StudentModel> AddStudent(StudentModel stu) {
@@ -28,25 +28,19 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Service {
                 Phone = stu.Phone,
             };
 
-            var dataAdd = await StudentContext.AddStudent(obj);
+            var dataAdd = await studentContext.AddStudent(obj);
             return new StudentModel { Id = dataAdd.Id};
         }
 
-        public async Task<StudentModel> DeleteStudentById(int id) {
-            var studentDelete = await StudentContext.DeleteStudentById(id);
+        public StudentModel DeleteStudentById(int id) {
+            var studentDelete = studentContext.DeleteStudentById(id);
             return new StudentModel {
-                Id = studentDelete.Id,
-                FirstName = studentDelete.FirstName,
-                LastName = studentDelete.LastName,
-                Email = studentDelete.Email,
-                DateOfBirth = studentDelete.DateOfBirth,
-                Phone = studentDelete.Phone,
-                CollegeId = studentDelete.CollegeId,
+                Id = studentDelete.Id
             };
         }
 
         public IEnumerable<StudentModel> GetAllStudents() {
-            var AllStudents = StudentContext.GetAllStudents();
+            var AllStudents = studentContext.GetAllStudents();
             return (from students in AllStudents
                 select new StudentModel  {
                     Id = students.Id,
@@ -58,21 +52,25 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Service {
                 });
         }
 
-        public async Task<StudentModel> GetStudentById(int id) {
-            var getStudent = await StudentContext.GetStudentById(id);
-            return (new StudentModel {
-                Id = getStudent.Id,
-                FirstName = getStudent.FirstName,
-                LastName = getStudent.LastName,
-                Email = getStudent.Email,
-                Phone= getStudent.Phone,
-                DateOfBirth = getStudent.DateOfBirth,
-            });
+        public StudentModel GetStudentById(int id) {
+            var getStudent = studentContext.GetStudentById(id);
+            return new StudentModel {
+                Id = getStudent.Id
+            };
         }
 
-        public async Task<StudentModel> UpdateStudent(StudentModel student) {
-            var updatedData = await StudentContext.UpdateStudent(student);
-            return null;
+        public StudentModel UpdateStudent(StudentModel student, int id) {
+            var obj = new StudentEntity {
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                Email = student.Email,
+                Phone = student.Phone,
+                DateOfBirth = student.DateOfBirth,
+            };
+            var updateData = studentContext.UpdateStudent(obj, id);
+            return new StudentModel {
+                Id = updateData.Id,
+            };
         }
     }
 }

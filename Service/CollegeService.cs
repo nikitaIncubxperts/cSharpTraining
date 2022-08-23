@@ -29,56 +29,45 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Service {
             return new CollegeModel { Id = dataAdd.Id };
         }
 
-        public async Task<CollegeModel> DeleteCollegeById(int id) {
+        public CollegeModel DeleteCollegeById(int id) {
+            var collegeDelete = collegeContext.DeleteCollegeById(id);
+            return new CollegeModel {
+                Id = collegeDelete.Id
+            };
+        }
+
+        public CollegeModel GetCollegeById(int id) {
+            var getCollege = collegeContext.GetCollegeById(id);
+            return new CollegeModel {
+                Id = getCollege.Id
+            };
+        }
+
+        public IEnumerable<CollegeModel> GetColleges() {
+            var AllColleges = collegeContext.GetColleges();
+            return (from students in AllColleges
+                    select new CollegeModel {
+                        Id = students.Id,
+                        Address = students.Address,
+                        District = students.District,
+                        University = students.University,
+                        Name = students.Name,
+                    });
             return null;
         }
 
-        public async Task<CollegeModel> GetCollegeById(int id) {
-            return null;
+        public CollegeModel UpdateCollege(CollegeModel college, int id) {
+            var obj = new CollegeEntity {
+                Id = college.Id,
+                Name = college.Name,
+                Address = college.Address,
+                District = college.District,
+                University = college.University,
+            };
+            var updateData = collegeContext.UpdateCollege(obj, id);
+            return new CollegeModel {
+                Id = updateData.Id,
+            };
         }
-
-        public Task<IEnumerable<CollegeModel>> GetColleges() {
-            return null;
-        }
-
-        public async Task<CollegeModel> UpdateCollege(CollegeModel college) {
-            return null;
-        }
-
-        //public async Task<CollegeModel> AddColleges(CollegeModel college) {
-        //    await _collegeContext.college.AddAsync(college);
-        //    _collegeContext.SaveChanges();
-        //    return college;
-        //}
-
-        //public async Task<CollegeModel> DeleteCollegeById(int id) {
-        //    var collegeData = await _collegeContext.college.Where(x => x.Id == id).FirstOrDefaultAsync();
-        //    if (collegeData != null) {
-        //        _collegeContext.college.Remove(collegeData);
-        //        await _collegeContext.SaveChangesAsync();
-        //    }
-        //    return null;
-        //}
-
-        //public async Task<CollegeModel> GetCollegeById(int id) {
-        //    return await _collegeContext.college.FirstOrDefaultAsync(a => a.Id == id);
-        //}
-
-        //public async Task<IEnumerable<CollegeModel>> GetColleges() {
-        //    return await _collegeContext.college.ToListAsync();
-        //}
-
-        //public async Task<CollegeModel> UpdateCollege(CollegeModel college) {
-        //    var result = await _collegeContext.college.FirstOrDefaultAsync(a => a.Id == college.Id);
-        //    if (result != null) {
-        //        result.Name = college.Name;
-        //        result.Address = college.Address;
-        //        result.District = college.District;
-        //        result.University = college?.University;
-        //        await _collegeContext.SaveChangesAsync();
-        //        return result;
-        //    }
-        //    return null;
-        //}
     }
 }
