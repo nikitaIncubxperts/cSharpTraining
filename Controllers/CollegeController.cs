@@ -12,7 +12,7 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Controllers {
         private readonly ICollege icollege;
 
         public CollegeController(ICollege _icollege) {
-            icollege = icollege;
+            icollege = _icollege;
         }
 
         [HttpGet]
