@@ -11,16 +11,25 @@ namespace CustomerProductOrderForeignKey.Services {
             customerProductOrderDbContext = new CustomerProductOrderDbContext();
         }
         public IEnumerable<Customer> Customers() {
-            var AllCustomer = customerProductOrderDbContext.Customer.ToList();
+            var AllCustomer = customerProductOrderDbContext.Customers.ToList();
             return AllCustomer;
         }
 
         public Customer Customer(int id) {
-            throw new System.NotImplementedException();
+            var customer = customerProductOrderDbContext.Customers.FirstOrDefault(x => x.Id == id);
+            return new Customer {
+                Id = id,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Email = customer.Email,
+                Phone = customer.Phone,
+            };
         }
 
         public int Customer(Customer customer) {
-            throw new System.NotImplementedException();
+            customerProductOrderDbContext.Customers.Add(customer);
+            customerProductOrderDbContext.SaveChanges();
+            return 1;
         }
 
         public int Customer(Customer customer, int id) {
@@ -29,27 +38,6 @@ namespace CustomerProductOrderForeignKey.Services {
 
         public bool DeleteCustomer(int id) {
             throw new System.NotImplementedException();
-        }
-
-        //public Task<Customer> AddCustomer(Customer customer) {
-        //    throw new System.NotImplementedException();
-        //}
-
-        //public Customer DeleteCustomer(int id) {
-        //    throw new System.NotImplementedException();
-        //}
-
-        //public Customer GetCustomerById(int id) {
-        //    throw new System.NotImplementedException();
-        //}
-
-        //public IEnumerable<Customer> GetCustomer() {
-        //    var AllCustomer = customerProductOrderDbContext.Customer.ToList();
-        //    return AllCustomer;
-        //}
-
-        //public Customer UpdateCustomer(Customer customer, int id) {
-        //    throw new System.NotImplementedException();
-        //}
+        }        
     }
 }

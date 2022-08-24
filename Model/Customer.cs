@@ -3,15 +3,18 @@
 namespace CustomerProductOrderForeignKey.Model {
     public class Customer {
         public int Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Please enter FirstName")]
         [StringLength(50)]
         public string FirstName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Please enter LastName")]
         [StringLength(50)]
-        public int LastName { get; set; }
+        public string LastName { get; set; }
+
         [Required]
-        [DataType(DataType.PhoneNumber)]
-        public int Phone { get; set; }
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Invalid Phone number")]
+        public string Phone { get; set; }
 
         [DataType(DataType.EmailAddress, ErrorMessage = "E-Mail is not valid")]
         public string? Email { get; set; }

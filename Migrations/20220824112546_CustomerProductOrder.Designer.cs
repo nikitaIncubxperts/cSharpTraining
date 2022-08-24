@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerProductOrderForeignKey.Migrations
 {
     [DbContext(typeof(CustomerProductOrderDbContext))]
-    [Migration("20220824090015_CustomerProductOrder")]
+    [Migration("20220824112546_CustomerProductOrder")]
     partial class CustomerProductOrder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,16 +35,18 @@ namespace CustomerProductOrderForeignKey.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("LastName")
+                    b.Property<string>("LastName")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("CustomerProductOrderForeignKey.Model.Product", b =>
@@ -64,7 +66,7 @@ namespace CustomerProductOrderForeignKey.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }
