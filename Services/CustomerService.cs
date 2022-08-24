@@ -1,5 +1,7 @@
 ﻿using CustomerProductOrderForeignKey.Interface;
 using CustomerProductOrderForeignKey.Model;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,11 +35,28 @@ namespace CustomerProductOrderForeignKey.Services {
         }
 
         public int Customer(Customer customer, int id) {
-            throw new System.NotImplementedException();
+            try {
+                var result = customerProductOrderDbContext.Customers.FirstOrDefault(a => a.Id == customer.Id);
+                if (result != null) {
+                    result.FirstName = customer.FirstName;
+                    result.LastName = customer.LastName;
+                    result.Email = customer.Email;
+                    result.Phone = customer.Phone;
+                    customerProductOrderDbContext.SaveChangesAsync();
+                }     
+            } catch(Exception e) {
+                Console.WriteLine(e);
+            }
+            return 1;
         }
 
         public bool DeleteCustomer(int id) {
-            throw new System.NotImplementedException();
+            var customer = customerProductOrderDbContext.Customers.FirstOrDefault(x => x.Id == id);
+            if (customer != null) {
+                customerProductOrderDbContext.Customers.Remove(customer);
+                customerProductOrderDbContext.SaveChanges();
+            }
+            return true;
         }        
     }
 }

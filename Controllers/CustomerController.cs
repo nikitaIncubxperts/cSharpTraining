@@ -26,5 +26,13 @@ namespace CustomerProductOrderForeignKey.Controllers {
         public IActionResult Customer(Customer customer) {
             return Ok(icustomerService.Customer(customer));
         }
+        [HttpPut]
+        public IActionResult Customer(Customer customer, int id) { 
+            return Ok(icustomerService.Customer(customer, id));
+        }
+        [HttpDelete]
+        public IActionResult Customer(int id) {
+            return Ok(icustomerService.DeleteCustomer(id));
+        }
     }
 }
