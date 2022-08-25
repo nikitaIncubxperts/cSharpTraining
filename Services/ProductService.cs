@@ -5,24 +5,29 @@ using System.Threading.Tasks;
 
 namespace CustomerProductOrderForeignKey.Services {
     public class ProductService : IProductService {
-        public Task<Product> AddProduct(Product product) {
+        private readonly CustomerProductOrderDbContext productContext;
+
+        public ProductService() {
+            productContext = new CustomerProductOrderDbContext();
+        }
+        public bool DeleteProduct(int id) {
             throw new System.NotImplementedException();
         }
 
-        public Product DeleteProduct(int id) {
+        public Product Product(int id) {
             throw new System.NotImplementedException();
         }
 
-        public Product GetProductById(int id) {
+        public int Product(Product product) {
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<Product> GetProducts() {
+        public int Product(Product product, int id) {
             throw new System.NotImplementedException();
         }
 
-        public Product UpdateProduct(Product product, int id) {
-            throw new System.NotImplementedException();
+        public IEnumerable<Product> Products() {
+            return productContext.Products;
         }
     }
 }
