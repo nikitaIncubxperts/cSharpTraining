@@ -17,18 +17,28 @@ namespace CustomerProductOrderForeignKey.Controllers {
         }
 
         [HttpGet]
-        public IActionResult Customer() {
+        public IActionResult Product() {
             return Ok(iProductService.Products());
         }
 
         [HttpGet("{id}")]
-        public IActionResult Customer(int id) {
+        public IActionResult Product(int id) {
             return Ok(iProductService.Product(id));
         }
 
         [HttpPost]
-        public IActionResult Customer(Product product) {
+        public IActionResult Product(Product product) {
             return Ok(iProductService.Product(product));
+        }
+
+        [HttpPut]
+        public IActionResult Product(Product product, int id) {
+            return Ok(iProductService.Product(product, id));
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteProduct(int id) {
+            return Ok(iProductService.DeleteProduct(id));
         }
     }
 }
