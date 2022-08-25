@@ -1,6 +1,7 @@
 ﻿using CustomerProductOrderForeignKey.Interface;
 using CustomerProductOrderForeignKey.Model;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CustomerProductOrderForeignKey.Services {
@@ -15,11 +16,18 @@ namespace CustomerProductOrderForeignKey.Services {
         }
 
         public Product Product(int id) {
-            throw new System.NotImplementedException();
+            var product = productContext.Products.FirstOrDefault(x => x.Id == id);
+            return new Product {
+                Id = id,
+                Name = product.Name,
+                Price = product.Price,
+            };
         }
 
         public int Product(Product product) {
-            throw new System.NotImplementedException();
+            productContext.Products.Add(product);
+            productContext.SaveChanges();
+            return 1;
         }
 
         public int Product(Product product, int id) {
