@@ -21,7 +21,7 @@ namespace CustomerProductOrderForeignKey.Controllers {
             return Ok(iProductService.Products());
         }
 
-        [HttpGet("{'id'}")]
+        [HttpGet("{id}")]
         public IActionResult Customer(int id) {
             return Ok(iProductService.Product(id));
         }
