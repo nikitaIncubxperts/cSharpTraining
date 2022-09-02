@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Data;
+using RestfulCRUD_APIs_CodingStandard_Validation_DI;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Migrations
 {
     [DbContext(typeof(Student_College_DbContext))]
-    [Migration("20220822113220_studentCollege")]
-    partial class studentCollege
+    [Migration("20220826090719_StudentCollegeDB")]
+    partial class StudentCollegeDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,7 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("collegeData");
+                    b.ToTable("Colleges");
                 });
 
             modelBuilder.Entity("RestfulCRUD_APIs_CodingStandard_Validation_DI.Entites.StudentEntity", b =>
@@ -82,7 +82,7 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("studentData");
+                    b.ToTable("Students");
                 });
 #pragma warning restore 612, 618
         }

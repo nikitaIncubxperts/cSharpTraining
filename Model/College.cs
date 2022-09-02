@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Model {
-    public class CollegeModel {
+    public class College {
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         

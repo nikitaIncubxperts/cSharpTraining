@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Entites {
     public class StudentEntity {
-
-
         public int Id { get; set; }
 
         [Required]

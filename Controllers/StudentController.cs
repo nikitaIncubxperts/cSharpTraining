@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Entites;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Interface;
 using RestfulCRUD_APIs_CodingStandard_Validation_DI.Model;
 using RestfulCRUD_APIs_CodingStandard_Validation_DI.Service;
 using System.Threading.Tasks;
@@ -9,35 +7,35 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Controllers {
     [Route("api/[controller]")]
     [ApiController]
     public class StudentController : ControllerBase {
-        private readonly IStudent istudent;
+        private readonly IStudentService istudent;
        
                                                                                     
-        public StudentController(IStudent _istudent) {
+        public StudentController(IStudentService _istudent) {
             istudent = _istudent;
 
         }
         [HttpGet]
         public IActionResult Get() {
-            return Ok(istudent.GetAllStudents());
+            return Ok(istudent.Student());
         }
         [HttpPost]
-        public IActionResult Add(StudentModel obj) {
-            return Ok(istudent.AddStudent(obj));
+        public IActionResult Add(Student obj) {
+            return Ok(istudent.Student(obj));
         }
 
         [HttpGet("{id}")]
         public IActionResult GetStudentById(int id) {
-            return Ok(istudent.GetStudentById(id));
+            return Ok(istudent.Student(id));
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteStudentById(int id) {
-            return Ok(istudent.DeleteStudentById(id));
+            return Ok(istudent.DeleteStudent(id));
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateStudent(StudentModel studModelobj ,int id) {
-            return Ok(istudent.UpdateStudent(studModelobj ,id));
+        public IActionResult UpdateStudent(Student studModelobj ,int id) {
+            return Ok(istudent.Student(studModelobj ,id));
         }
     }
 }

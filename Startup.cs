@@ -6,10 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Data;
 using RestfulCRUD_APIs_CodingStandard_Validation_DI.DataAccess;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.IDataAccess;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Interface;
 using RestfulCRUD_APIs_CodingStandard_Validation_DI.Service;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI {
@@ -29,8 +26,8 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestfulCRUD_APIs_CodingStandard_Validation_DI", Version = "v1" });
             });
 
-            services.AddTransient<IStudent, StudentService>();
-            services.AddTransient<ICollege, CollegeService>();
+            services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<ICollegeService, CollegeService>();
             services.AddTransient<IStudentDA, StudentDA>();
             services.AddTransient<ICollegeDA, CollegeDA>();
         }

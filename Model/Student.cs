@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Model {
-    public class StudentModel {
+    public class Student {
 
        
         public int Id { get; set; }

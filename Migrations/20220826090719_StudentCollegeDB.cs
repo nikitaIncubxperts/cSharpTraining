@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Migrations
 {
-    public partial class studentCollege : Migration
+    public partial class StudentCollegeDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "collegeData",
+                name: "Colleges",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,11 +20,11 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_collegeData", x => x.Id);
+                    table.PrimaryKey("PK_Colleges", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "studentData",
+                name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -38,17 +38,17 @@ namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_studentData", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "collegeData");
+                name: "Colleges");
 
             migrationBuilder.DropTable(
-                name: "studentData");
+                name: "Students");
         }
     }
 }

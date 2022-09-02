@@ -1,60 +1,66 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Data;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.Entites;
-using RestfulCRUD_APIs_CodingStandard_Validation_DI.IDataAccess;
+﻿using RestfulCRUD_APIs_CodingStandard_Validation_DI.Entites;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RestfulCRUD_APIs_CodingStandard_Validation_DI.DataAccess {
+
+    public interface IStudentDA {
+        IEnumerable<StudentEntity> Student();  //get all
+        StudentEntity Student(int id); //get by id
+        int Student(StudentEntity student);  //add
+        int Student(StudentEntity student, int id); //update
+        StudentEntity DeleteStudent(int id);  //delete
+    }
+
     public class StudentDA : IStudentDA {
         private readonly Student_College_DbContext _stud_clg_context;
 
         public StudentDA(Student_College_DbContext context) {
             _stud_clg_context = context;
         }
-        public async Task<StudentEntity> AddStudent(StudentEntity stud) {
-            var dataAdd = await _stud_clg_context.studentData.AddAsync(stud);
-            _stud_clg_context.SaveChanges();
-            return dataAdd.Entity;
-        }
 
-        public StudentEntity DeleteStudentById(int id) {
-            var delStudentData = _stud_clg_context.studentData.FirstOrDefault(x => x.Id == id);
+        public StudentEntity DeleteStudent(int id) {
+            var delStudentData = _stud_clg_context.Students.FirstOrDefault(x => x.Id == id);
             if (delStudentData != null) {
-                var delStud = _stud_clg_context.studentData.Remove(delStudentData);
-                _stud_clg_context.SaveChanges();
-                return delStud.Entity;
+                var delStud = _stud_clg_context.Students.Remove(delStudentData);
+                _stud_clg_context.SaveChanges(); 
+                return delStudentData;
             }
             return null;
         }
 
-        public IEnumerable<StudentEntity> GetAllStudents() {
-            return _stud_clg_context.studentData;
-        }
-
-        public StudentEntity GetStudentById(int id) {
-            var studById = _stud_clg_context.studentData.FirstOrDefault(x => x.Id == id);
+        public StudentEntity Student(int id) {
+            var studById = _stud_clg_context.Students.FirstOrDefault(x => x.Id == id);
             _stud_clg_context.SaveChanges();
             return studById;
         }
 
-        public StudentEntity UpdateStudent(StudentEntity student, int id) {
-            var studentData = _stud_clg_context.studentData.Where(x => x.Id == id).ToList();
-            foreach(var dataUpdate in studentData) {
-                if(dataUpdate.Id == id) {
+        public int Student(StudentEntity student) {
+            var dataAdd = _stud_clg_context.Students.AddAsync(student);
+            _stud_clg_context.SaveChanges();
+            return 1;
+        }
+
+        public int Student(StudentEntity student, int id) {
+            var studentData = _stud_clg_context.Students.Where(x => x.Id == id).ToList();
+            foreach (var dataUpdate in studentData) {
+                if (dataUpdate.Id == id) {
                     dataUpdate.FirstName = student.FirstName;
                     dataUpdate.LastName = student.LastName;
                     dataUpdate.Email = student.Email;
                     dataUpdate.Phone = student.Phone;
                     dataUpdate.DateOfBirth = student.DateOfBirth;
 
-                    var studUpdate = _stud_clg_context.studentData.Update(dataUpdate);
+                    var studUpdate = _stud_clg_context.Students.Update(dataUpdate);
                     _stud_clg_context.SaveChanges();
-                    return studUpdate.Entity;
                 }
             }
-            return null;
+            return 1;
+        }
+
+        public IEnumerable<StudentEntity> Student() {
+            return _stud_clg_context.Students;
         }
     }
 }
